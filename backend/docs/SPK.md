@@ -13,9 +13,6 @@ Endpoint: `GET /api/SPK/`
 ```
 
 **Response Error :**
-- **400 Bad Request:** Invalid request body or insufficient quantity !
-- **401 Bad Request:** Unauthorized: Invalid or expired token !
-
 
 
 ## 2. Get SPK by User ID
@@ -30,9 +27,6 @@ Endpoint: `GET /api/SPK/user`
 ```
 
 **Response Error :**
-- **400 Bad Request:** Invalid request body or insufficient quantity !
-- **401 Bad Request:** Unauthorized: Invalid or expired token !
-
 
 
 ## 3. Request SPK Material
@@ -59,24 +53,41 @@ Endpoint: `POST /orders/order
    "updatedAt": "2024-11-13T00:28:08.121Z"
 }
 ```
-**Response Error : ??**
-- **400 Bad Request:** Invalid request body or insufficient quantity !
-- **401 Bad Request:** Unauthorized: Invalid or expired token !
-- **404 Not Found:** Item with the specified ID not found
+**Response Error :**
 
 
 
-## 4. Verify Request SPK
+
+## 4. WH Verify Request SPK
 Endpoint: `PATCH /api/SPK/verify/{spk_id}`
 
 ** Request Body:**
- - **200 OK:** Return unique SPK
 ```json
 {
- "status" : "string"
+    "status": "ON_PROCESS"
+}
+```
+**Response Success :**
+```json
+{
+    "message": "SPK Request Received Successfully"
+}
+```
+
+## 5. PH Received Order
+Endpoint: `PATCH /orders/received/{orderId}`
+
+**Request Body:**
+
+```json
+{
+    "status": "DONE"
+}
+```
+**Response Success :**
+```json
+{
+    "message": "SPK Request DONE Successfully"
 }
 ```
 **Response Error :**
-- **400 Bad Request:** Invalid request body or insufficient quantity !
-- **401 Bad Request:** Unauthorized: Invalid or expired token !
-- **500 internal server error:** Failed to verify transaction !
